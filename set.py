@@ -1,27 +1,30 @@
-from player import *
+from player import Player
 import json
 
-with open('data/data.json', 'r') as txt:
-    data = json.load(txt)
+
+with open('data/player.json', 'r') as _json:
+  data = json.load(_json)
 
 fp = Player()
-fp.set_nickname(data['players'][0]['nickname'])
-fp.set_health(data['players'][0]['health'])
-fp.set_might(data['players'][0]['might'])
-fp.set_defence(data['players'][0]['defence'])
-fp.set_regen(data['players'][0]['regen'])
-fp.set_lifesteal(data['players'][0]['lifesteal'])
-fp.set_crit_bonus(data['players'][0]['crit bonus'])
-fp.set_crit_chance(data['players'][0]['crit chance'])
-fp.set_dodge_chance(data['players'][0]['dodge chance'])
-
 sp = Player()
-sp.set_nickname(data['players'][1]['nickname'])
-sp.set_health(data['players'][1]['health'])
-sp.set_might(data['players'][1]['might'])
-sp.set_defence(data['players'][1]['defence'])
-sp.set_regen(data['players'][1]['regen'])
-sp.set_lifesteal(data['players'][1]['lifesteal'])
-sp.set_crit_bonus(data['players'][1]['crit bonus'])
-sp.set_crit_chance(data['players'][1]['crit chance'])
-sp.set_dodge_chance(data['players'][1]['dodge chance'])
+
+number_of_players = 2
+players_tags = [fp, sp]
+
+def set_data_player():
+  _id = 0
+  for player in players_tags:
+    for x in range(0, number_of_players):
+      player.set_nickname(data['players'][_id]['nickname'])
+      player.set_health(data['players'][_id]['health'])
+      player.set_might(data['players'][_id]['might'])
+      player.set_defence(data['players'][_id]['defence'])
+      player.set_regen(data['players'][_id]['regen'])
+      player.set_lifesteal(data['players'][_id]['lifesteal'])
+      player.set_crit_bonus(data['players'][_id]['crit bonus'])
+      player.set_crit_chance(data['players'][_id]['crit chance'])
+      player.set_dodge_chance(data['players'][_id]['dodge chance']) 
+      player.set_armor_penetration(data['players'][_id]['armor penetration']) 
+    _id = _id + 1
+
+set_data_player()
